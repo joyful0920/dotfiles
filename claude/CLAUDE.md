@@ -12,3 +12,11 @@
 - 명확한 요청이 없으면 불필요한 리팩터링은 하지 않는다.
 - 명확한 요청이 없으면 구조 변경과 의존성 추가를 최소화한다.
 - 관련 없는 파일은 건드리지 않는다.
+
+## Git Commit Convention
+
+- 커밋 메시지는 항상 영어로만 작성한다. (한국어 금지)
+- 메시지 제목 앞에는 반드시 Conventional Commits 키워드를 붙인다: `feat:`, `fix:`, `chore:`, `docs:`, `style:`, `refactor:`, `perf:`, `test:`, `build:`, `ci:`, `revert:`
+- 형식: `<type>: <subject>` (예: `feat: add user login flow`, `fix: handle null token on refresh`)
+- 제목은 명령형 현재 시제로 작성하고, 끝에 마침표를 붙이지 않는다.
+- 필요 시 범위를 명시한다: `<type>(<scope>): <subject>` (예: `feat(auth): add OAuth provider`)
