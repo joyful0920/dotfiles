@@ -1,22 +1,58 @@
-## Working Style
+# CLAUDE.md
 
-- 답변은 한국어로 한다.
-- 큰 변경 전에는 3줄 이내의 계획을 먼저 제시한다.
-- 모호한 부분은 추측하지 말고 코드와 설정 파일을 먼저 확인한다.
-- 변경은 항상 최소 범위로 수행한다.
-- 코드 수정 후에는 가능한 검증 방법(테스트, 린트, 실행 방법)을 우선 제시하거나 실행한다.
+Personal user-level guidelines applied across all projects.
+When these conflict with a project's CLAUDE.md or organization rules, the project/organization rules always win.
 
-## Coding Behavior
+## 1. Think Before Coding
 
-- 기존 코드 스타일, 네이밍, 파일 구조, 패턴을 우선적으로 따른다.
-- 명확한 요청이 없으면 불필요한 리팩터링은 하지 않는다.
-- 명확한 요청이 없으면 구조 변경과 의존성 추가를 최소화한다.
-- 관련 없는 파일은 건드리지 않는다.
+- State assumptions explicitly. If uncertain, ask instead of guessing.
+- If multiple interpretations exist, present them — don't pick one silently.
+- Define success criteria before implementing. If requirements are unclear, ask.
+- For anything beyond a small fix, propose a plan split into reviewable PR-sized steps and get confirmation first.
+- Cut work into working vertical slices, not horizontal layers (not "all DB, then all services").
 
-## Git Commit Convention
+## 2. Simplicity First
 
-- 커밋 메시지는 항상 영어로만 작성한다. (한국어 금지)
-- 메시지 제목 앞에는 반드시 Conventional Commits 키워드를 붙인다: `feat:`, `fix:`, `chore:`, `docs:`, `style:`, `refactor:`, `perf:`, `test:`, `build:`, `ci:`, `revert:`
-- 형식: `<type>: <subject>` (예: `feat: add user login flow`, `fix: handle null token on refresh`)
-- 제목은 명령형 현재 시제로 작성하고, 끝에 마침표를 붙이지 않는다.
-- 필요 시 범위를 명시한다: `<type>(<scope>): <subject>` (예: `feat(auth): add OAuth provider`)
+- Build only what is needed now. No speculative abstraction, no unrequested flexibility.
+- No features beyond what was asked. If something extra seems necessary, propose it instead of building it.
+
+## 3. Surgical Changes
+
+- Follow the existing codebase's conventions over personal preference or general best practice.
+- Touch only what the task requires. No unrelated refactoring, no drive-by cleanup.
+- Match the existing style even when you would do it differently.
+- Remove only the dead code your own change created; mention pre-existing dead code, don't delete it.
+
+## 4. Goal-Driven Execution
+
+- Write feature code and its tests in the same unit of work.
+- Verify before declaring done: run the relevant tests and linters, and loop until they pass.
+- Finish with a short report: what changed / how it was verified / remaining risks and TODOs.
+
+## Code Principles
+
+- TypeScript is strict by default. No `any`; when unavoidable, leave a comment explaining why.
+- Never swallow errors. Log with context and convert them into meaningful exceptions.
+- For DB changes (schema, migrations, transaction boundaries, indexes), explain the impact and the rollback path.
+- Record considered alternatives and the rationale behind design decisions in docs or the PR.
+
+## Documentation
+
+- Never invent unverifiable numbers. Without evidence, omit them or mark them as estimates.
+- No hype, no filler. Be concise, factual, and grounded.
+
+## Safety
+
+- Ask before destructive or irreversible operations — especially `DROP`/`TRUNCATE` and anything targeting production.
+- Never put secrets, tokens, or personal data into code, logs, or commits.
+- Never move one company's confidential code, metrics, or architecture into another company's work or personal repos.
+- Don't guess library APIs or version-specific behavior. Check the code/docs or say you're unsure.
+
+## Feedback
+
+- If my design or code has problems, say so directly.
+- When I ask "why", explain the reasoning, alternatives, and trade-offs — not just the conclusion.
+
+## Private settings
+
+@~/.claude/CLAUDE.private.md

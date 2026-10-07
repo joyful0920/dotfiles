@@ -1,0 +1,7 @@
+.DS_Store
+
+# Private settings — never commit
+CLAUDE.private.md
+*.local.json
+.env
+.env.*
