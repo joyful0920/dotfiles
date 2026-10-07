@@ -173,9 +173,12 @@
       ]
     },
     "excludedCommands": [
-      "git",
-      "gh",
-      "ssh"
+      "git push *",
+      "git pull *",
+      "git fetch *",
+      "git clone *",
+      "gh *",
+      "ssh *"
     ]
   },
   "effortLevel": "high",
